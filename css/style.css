@@ -1,0 +1,257 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+*{
+  box-sizing: border-box;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+img{
+  display: block;
+  margin: 0 auto;
+}
+
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+
+/******* Fonts Import Start **********/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+/********* Fonts Face CSS End **********/
+
+/******* Common Element CSS Start ******/
+* {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+.clear {
+  clear: both;
+}
+img {
+  max-width: 100%;
+  border: 0px;
+}
+ul,
+ol {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+a:focus,
+a:active,
+a:visited,
+a:hover {
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  color: #e73700;
+}
+h2 {
+  margin-bottom: 48px;
+  padding-bottom: 16px;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 700;
+  position: relative;
+  text-transform: capitalize;
+}
+h3 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  line-height: 36px;
+}
+button {
+  outline: none !important;
+}
+/******* Common Element CSS End *********/
+
+/* -------- title style ------- */
+.line-title {
+  position: relative;
+  width: 400px;
+}
+.line-title::before,
+.line-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  border-radius: 2px;
+}
+.line-title::before {
+  width: 100%;
+  background: #f2f2f2;
+}
+.line-title::after {
+  width: 32px;
+  background: #e73700;
+}
+
+/******* Middle section CSS Start ******/
+/* -------- Landing page ------- */
+.drinks {
+  padding: 60px 50px;
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: row; */
+}
+
+.drinks .item {
+  margin: 0 15px 60px;
+  width: 320px;
+  height: 400px;
+  display: flex;
+  display: -webkit-flex;
+  align-items: flex-end;
+  -webkit-align-items: flex-end;
+  background: #343434 no-repeat center center / cover;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  cursor: pointer;
+}
+.drinks .item.active {
+  box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 12px 40px 40px rgba(0, 0, 0, 0.25);
+}
+.drinks .item:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
+.drinks .item-desc {
+  padding: 0 24px 12px;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transform: translateY(calc(100% - 54px));
+  -webkit-transform: translateY(calc(100% - 54px));
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+.drinks .item.active .item-desc {
+  transform: none;
+  -webkit-transform: none;
+}
+.drinks .item-desc p {
+  opacity: 0;
+  -webkit-transform: translateY(32px);
+  transform: translateY(32px);
+  transition: all 0.4s ease-in-out 0.2s;
+  -webkit-transition: all 0.4s ease-in-out 0.2s;
+}
+.drinks .item.active .item-desc p {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+
+/* carousel */
+*{
+  margin:0;
+}
+
+.carousel-container{
+  position:relative;
+  margin:1em auto .5em auto;
+  max-width:600px;
+}
+.carousel-container, .carousel-caption{
+  box-shadow: 0 0 5px rgb(204,204,204);;
+}
+.carousel-container img{
+border-radius:.5em;
+}
+.hidden{
+  display:none;
+}
+.visible{
+  display:block;
+}
+.arrow{
+  display:inline;
+}
+
+.prev, .arrow{
+ cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin: -1.5em .3em 0 .3em;
+  padding: 1em;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  transition: 0.3s ease;
+  border-radius: .5em;
+  user-select: none;
+  background-color:rgba(204,204,204, 0.3);
+}
+.next {
+  right:0 ;
+}
+.prev:hover, .next:hover{
+  box-shadow: 0 0 5px #fff;
+  border:1px solid #fff;
+}
+.slide-numbers{
+  text-align: center;
+  position:absolute;
+  bottom:1em;
+  left:45%;
+
+}
+.dot{
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  background-color: rgba(204,204,204, 0.3);
+  border-radius: 50%;
+  display: inline-block;
+} 
+
+.dot:hover, .active{
+  background-color: rgb(204,204,204);
+  height: 12px;
+  width: 12px;
+}
+.dot:hover{
+   box-shadow: 0 0 5px #fff;
+}
+.carousel-caption{
+  text-align: center;
+  font-family:'Nanum Gothic',serif;
+  background-color: rgba(204,204,204,.8);
+  max-width:600px;
+  margin:.5em auto;
+  padding:1em 0;
+  border-radius:.5em;
+}
+
+
