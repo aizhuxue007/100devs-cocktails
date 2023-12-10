@@ -4,6 +4,7 @@
 const input = document.querySelector("input");
 const drinks = document.querySelector(".drinks");
 const submitBtn = document.querySelector("button");
+let dots = document.querySelectorAll(".dot");
 
 let prev = document.querySelector(".prev");
 let next = document.querySelector(".next");
@@ -15,18 +16,25 @@ submitBtn.addEventListener("click", run);
 next.addEventListener("click", nextImg);
 prev.addEventListener("click", prevImg);
 
+dots.forEach((dot, dotPosition) => {
+  dot.addEventListener("click", () => {
+    imgPosition = dotPosition;
+    updatePosition(dotPosition);
+  });
+});
+
 // Update Position
 function updatePosition() {
   let imgs = document.querySelectorAll(".carousel-img");
   let dots = document.querySelectorAll(".dot");
   let captions = document.querySelectorAll(".carousel-caption");
+  console.log(captions)
 
   //   Images
   for (let img of imgs) {
     img.classList.remove("visible");
     img.classList.add("hidden");
   }
-  console.log(imgs);
   imgs[imgPosition].classList.remove("hidden");
   imgs[imgPosition].classList.add("visible");
   //   Dots
@@ -45,7 +53,7 @@ function updatePosition() {
 
 // Next Img
 function nextImg() {
-    let imgs = document.querySelectorAll(".carousel-img");
+  let imgs = document.querySelectorAll(".carousel-img");
   let totalImgs = imgs.length;
   if (imgPosition === totalImgs - 1) {
     imgPosition = 0;
@@ -54,10 +62,11 @@ function nextImg() {
   }
   updatePosition();
 }
+
 //Previous Image
 function prevImg() {
-    let imgs = document.querySelectorAll(".carousel-img");
-    let totalImgs = imgs.length;
+  let imgs = document.querySelectorAll(".carousel-img");
+  let totalImgs = imgs.length;
   if (imgPosition === 0) {
     imgPosition = totalImgs - 1;
   } else {
@@ -66,13 +75,7 @@ function prevImg() {
   updatePosition();
 }
 
-// Dot Position
-// dots.forEach((dot, dotPosition) => {
-//   dot.addEventListener("click", () => {
-//     imgPosition = dotPosition;
-//     updatePosition(dotPosition);
-//   });
-// });
+
 
 function makeDrinkCard(drink) {
   const newCard = document.createElement("div");
@@ -115,7 +118,7 @@ function addToCarousel(drink) {
   newImg.src = drink.strDrinkThumb;
   newDescHeading.innerText = drink.strDrink;
   newDescParagraph.innerText = drink.strInstructions;
-
+  console.log(carouselCaptions)
   newDesc.appendChild(newDescHeading);
   newDesc.appendChild(newDescParagraph);
   carouselImgs.appendChild(newImg);
@@ -143,12 +146,12 @@ function isEmpty(element) {
 }
 
 function resetCarousel() {
-    const carouselImgs = document.querySelector(".carousel-imgs");
+  const carouselImgs = document.querySelector(".carousel-imgs");
   const dotSlideIndicator = document.querySelector(".slide-numbers");
   const carouselCaptions = document.querySelector(".carousel-captions");
-    if (!isEmpty(carouselImgs)) carouselImgs.innerHTML = '';
-    if (!isEmpty(dotSlideIndicator)) dotSlideIndicator.innerHTML = '';
-    if (!isEmpty(carouselCaptions)) carouselCaptions.innerHTML = '';
+  if (!isEmpty(carouselImgs)) carouselImgs.innerHTML = "";
+  if (!isEmpty(dotSlideIndicator)) dotSlideIndicator.innerHTML = "";
+  if (!isEmpty(carouselCaptions)) carouselCaptions.innerHTML = "";
 }
 
 function run() {
@@ -158,32 +161,16 @@ function run() {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      resetCarousel()
+      resetCarousel();
       data.drinks.forEach((drink) => {
         addToCarousel(drink);
-
-        // makeDrinkCard(drink);
       });
-      makeDrinkActive();
+      // makeDrinkActive();
     })
     .catch((err) => {
       console.log(`error ${err}`);
     });
 }
 
+const interval = setInterval(nextImg, 3000);
 
-
-// document.addEventListener('DOMContentLoaded', function () {
-
-//     drinks.addEventListener('click', function (event) {
-//       if (event.target.classList.contains('item')) {
-//         var items = drinks.querySelectorAll('.item');
-//         items.forEach(function (item) {
-//           if (item !== event.target) {
-//             item.classList.remove('active');
-//           }
-//         });
-//         event.target.classList.toggle('active');
-//       }
-//     });
-//   });
